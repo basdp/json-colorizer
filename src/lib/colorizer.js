@@ -14,7 +14,7 @@ const defaultColors = {
 };
 
 exports.colorize = function colorize(tokens, options = {}) {
-	const chalkInstance = new chalk.Instance(options);
+  const chalkInstance = new chalk.Instance(options);
   
   const colors = options.colors || {};
 
