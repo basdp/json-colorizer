@@ -14,11 +14,13 @@ const defaultColors = {
 };
 
 exports.colorize = function colorize(tokens, options = {}) {
+	const chalkInstance = new chalk.Instance(options);
+  
   const colors = options.colors || {};
 
   return tokens.reduce((acc, token) => {
     const colorKey = colors[token.type] || defaultColors[token.type];
-    const colorFn = colorKey && colorKey[0] === '#' ? chalk.hex(colorKey) : get(chalk, colorKey);
+    const colorFn = colorKey && colorKey[0] === '#' ? chalk.hex(colorKey) : get(chalkInstance, colorKey);
 
     return acc + (colorFn ? colorFn(token.value) : token.value);
   }, '');
